@@ -1,0 +1,27 @@
+<p class="text-sm text-zinc-600 mb-4">
+  Currently in room: <strong class="text-zinc-800 font-semibold"><%= @room_id %></strong>
+</p>
+
+<div class="bg-white border border-zinc-200 rounded-xl shadow-sm p-4 sm:p-6 flex flex-col grow">
+  <div class="overflow-y-auto space-y-3 text-sm text-zinc-700 grow">
+    <p class="text-center text-zinc-500">Chat goes here</p>
+    <%= for message <- @messages do %>
+        <p><%= message %></p>
+    <% end %>
+  </div>
+    <.form for={@form} id="chat-form" phx-submit="submit_message" class="mt-4 flex gap-2">
+        <input
+            name="message"
+            value={@form.params["message"]}
+            type="text"
+            placeholder="Enter your message..."
+            class="flex-1 h-10 rounded-lg border border-zinc-300 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+        />
+            <button
+                type="submit"
+                class="h-10 px-4 rounded-lg bg-orange-500 text-sm font-semibold text-white hover:bg-orange-600 transition"
+            >
+                Send
+            </button>
+    </.form>
+</div>
